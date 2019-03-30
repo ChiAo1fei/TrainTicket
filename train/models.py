@@ -21,6 +21,9 @@ class Station(models.Model):
         verbose_name = '站点信息'
         verbose_name_plural = '站点信息'
 
+    def __str__(self):
+        return self.station_name
+
 
 class TrainInfo(models.Model):
     """
@@ -63,6 +66,9 @@ class TrainInfo(models.Model):
         db_table = 'train_info'
         verbose_name_plural = '火车信息'
         verbose_name = '火车信息'
+
+    def __str__(self):
+        return str(self.train_type) + str(self.train_num)
 
 
 class TrainStationPrice(models.Model):
