@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a70fed4-58d6-496d-907b-cd7a706ae1c2" name="Default Changelist" comment="解决了显示对象的问题，现在显示的是对象对应的名称。&#10;在对应的类中重写__str__方法，返回对应的值即可">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainTicket/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/TrainTicket/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extra_apps/xadmin/adminx.py" beforeDir="false" afterPath="$PROJECT_DIR$/extra_apps/xadmin/adminx.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/train/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="8a70fed4-58d6-496d-907b-cd7a706ae1c2" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +12,26 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/order/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="30" column="77" selection-start-line="30" selection-start-column="77" selection-end-line="30" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/train/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-837">
+              <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -85,22 +95,7 @@
             <path>
               <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
               <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
+              <item name="train" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -180,7 +175,7 @@
       <workItem from="1554255150434" duration="994000" />
       <workItem from="1554281910038" duration="4236000" />
       <workItem from="1554341458499" duration="86000" />
-      <workItem from="1554365467653" duration="2445000" />
+      <workItem from="1554365467653" duration="2847000" />
     </task>
     <task id="LOCAL-00001" summary="解决了显示对象的问题，现在显示的是对象对应的名称。&#10;在对应的类中重写__str__方法，返回对应的值即可">
       <created>1553922826078</created>
@@ -189,11 +184,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553922826078</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="前端代码和后端代码全部放到Pycharmz中，进行最后一步，写业务逻辑">
+      <created>1554368058209</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1554368058209</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29648000" />
+    <option name="totallyTimeSpent" value="30050000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="374" y="5" width="1342" height="1047" extended-state="0" />
@@ -203,13 +205,13 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35268345" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35268345" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32932165" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32858709" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50078005" side_tool="true" weight="0.32858709" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49921995" weight="0.3275488" />
@@ -234,9 +236,67 @@
       </list>
     </option>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="解决了显示对象的问题，现在显示的是对象对应的名称。&#10;在对应的类中重写__str__方法，返回对应的值即可" />
-    <option name="LAST_COMMIT_MESSAGE" value="解决了显示对象的问题，现在显示的是对象对应的名称。&#10;在对应的类中重写__str__方法，返回对应的值即可" />
+    <MESSAGE value="前端代码和后端代码全部放到Pycharmz中，进行最后一步，写业务逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="前端代码和后端代码全部放到Pycharmz中，进行最后一步，写业务逻辑" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/train/urls.py">
@@ -283,13 +343,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-184">
-          <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/images/banner08.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -313,13 +366,6 @@
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/order/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="30" column="77" selection-start-line="30" selection-start-column="77" selection-end-line="30" selection-end-column="77" />
         </state>
       </provider>
     </entry>
@@ -382,6 +428,20 @@
           <folding>
             <element signature="e#27#64#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/order/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="30" column="77" selection-start-line="30" selection-start-column="77" selection-end-line="30" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-837">
+          <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
         </state>
       </provider>
     </entry>

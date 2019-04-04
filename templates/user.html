@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Theme Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css" />
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  	<!--顶部导航栏-->
+  	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">火车订票系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">首页</a></li>
+            <li><a href="#about">购票</a></li>
+            <li><a href="#contact">关于</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">我的订单</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">我的信息</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+        <div id="blank" style="height: 80px;"></div>
+  <div class="container theme-showcase" style="width: 60%;" role="main">
+		<table class="table table-striped">
+	  <caption>个人信息</caption>
+	  <thead>
+	    <tr>
+	      <th  class="text-center">名称</th>
+	      <th  class="text-center">城市</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr class="text-center">
+	      <td>账号</td>
+	      <td>Bangalore</td>
+	    </tr>
+	    <tr class="text-center">
+	      <td>密码</td>
+	      <td>Mumbai</td>
+	    </tr>
+	    <tr class="text-center">
+	      <td>姓名</td>
+	      <td>Pune</td>
+	    </tr>
+	    <tr class="text-center">
+	      <td>性别</td>
+	      <td>Pune</td>
+	    </tr>
+	    <tr class="text-center">
+	      <td>证件号</td>
+	      <td>Pune</td>
+	    </tr>
+	    <tr class="text-center">
+	      <td>年龄</td>
+	      <td>Pune</td>
+	    </tr>
+	    <tr class="text-center">
+	      <td>电话</td>
+	      <td>Pune</td>
+	    </tr>
+	    <tr class="text-center">
+	      <td>地址</td>
+	      <td>Pune</td>
+	    </tr>
+	  </tbody>
+	</table>
+	<button class="btn btn-primary btn-ajax" data-toggle="modal" data-target="#addUserModal">修改信息</button>
+	<form method="post" action="" class="form-horizontal" role="form" id="form_data" onsubmit="return check_form()" style="margin: 20px;">
+					    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					        <div class="modal-dialog">
+					            <div class="modal-content">
+					                <div class="modal-header">
+					                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					                        ×
+					                    </button>
+					                    <h4 class="modal-title" id="myModalLabel">
+					                        用户信息
+					                    </h4>
+					                </div>
+					                <div class="modal-body">
+					                    <form class="exform quick-form rended" enctype="multipart/form-data">
+					                        <div class="form-group row">
+					                            <label for="user_id" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户ID</label>
+					                            <div class="col-sm-6">
+					                                <input type="text" class="form-control" id="user_id" name="user_id" value="{user_id}"
+					                                       placeholder="请输入用户ID">
+					                            </div>
+					                        </div>
+					                       
+					                        <div class="form-group row">
+					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户名</label>
+					                            <div class="col-sm-6">
+					                                <input type="text" class="form-control" name="user_name" value="" id="user_name"
+					                                       placeholder="用户名">
+					                            </div>
+					                        </div>
+					                        <div class="form-group row">
+					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">地址</label>
+					                            <div class="col-sm-6">
+					                                <input type="text" class="form-control" name="address" value="" id="address"
+					                                       placeholder="地址">
+					                            </div>
+					                        </div>
+					                        					                        <div class="form-group row">
+					                            <label for="user_id" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户ID</label>
+					                            <div class="col-sm-6">
+					                                <input type="text" class="form-control" id="user_id" name="user_id" value="{user_id}"
+					                                       placeholder="请输入用户ID">
+					                            </div>
+					                        </div>
+					                       
+					                        <div class="form-group row">
+					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户名</label>
+					                            <div class="col-sm-6">
+					                                <input type="text" class="form-control" name="user_name" value="" id="user_name"
+					                                       placeholder="用户名">
+					                            </div>
+					                        </div>
+					                        <div class="form-group row">
+					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">地址</label>
+					                            <div class="col-sm-6">
+					                                <input type="text" class="form-control" name="address" value="" id="address"
+					                                       placeholder="地址">
+					                            </div>
+					                        </div>
+					                    </form>
+					                </div>
+					                <div class="modal-footer">
+					                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					                    </button>
+					                    <button type="submit" class="btn btn-primary">
+					                        提交
+					                    </button><span id="tip"> </span>
+					                </div>
+					            </div><!-- /.modal-content -->
+					        </div><!-- /.modal -->
+					    </div>
+					    </form>
+	
+  </div>
+
+	<footer class="tm-black-bg navbar-fixed-bottom">
+		<div class="container">
+			<div class="row">
+				<p class="tm-copyright-text">Copyright &copy; <a target="_blank">ChiAo1fei</a> 
+                
+                | 毕业设计 <a target="_blank">火车订票管理系统</a> - By <a target="_blank">Django & Html5</a></p>
+			</div>
+		</div>		
+	</footer>
+
+  	    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Theme Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/index.css" />
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    	body{
+    		background-color: #E5E5E5;
+    	}
+    </style>
+  </head>
+
+  <body>
+  	<!--顶部导航栏-->
+  	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">火车订票系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">首页</a></li>
+            <li><a href="#about">购票</a></li>
+            <li><a href="#contact">关于</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">我的订单</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">我的信息</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div id="blank" style="height: 50px;">
+    	
+    </div>
+    <!--容器-->
+
+			<div id="myCarousel" class="carousel slide">
+	    <!-- 轮播（Carousel）指标 -->
+	    <ol class="carousel-indicators">
+	        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	        <li data-target="#myCarousel" data-slide-to="1"></li>
+	        <li data-target="#myCarousel" data-slide-to="2"></li>
+	    </ol>   
+	    <!-- 轮播（Carousel）项目 -->
+	    <div class="carousel-inner">
+	        <div class="item active">
+	            <img src="/static/images/banner08.jpg" alt="First slide">
+	        </div>
+	        <div class="item">
+	            <img src="/static/images/banner10.jpg" alt="Second slide">
+	        </div>
+	        <div class="item">
+	            <img src="/static/images/banner12 (1).jpg" alt="Third slide">
+	        </div>
+	    </div>
+	    <!-- 轮播（Carousel）导航 -->
+	    <a class="carousel-control left" href="#myCarousel" 
+	       data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-left"></span></a>
+	    <a class="carousel-control right" href="#myCarousel" 
+	       data-slide="next"><span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
+	</div>
+  <div class="container theme-showcase" role="main">
+  	<div class="row">
+			<div class="col-lg-4 col-md-4 col-sm-6">
+				<!-- Nav tabs -->
+				<div class="tm-home-box-1">
+					<ul class="nav nav-tabs tm-white-bg" role="tablist" id="hotelCarTabs">
+					    <li role="presentation" class="active">
+					    	<a href="#hotel" aria-controls="hotel" role="tab" data-toggle="tab">车票</a>
+					    </li>
+					    <li role="presentation">
+					    	<a href="#car" aria-controls="car" role="tab" data-toggle="tab">常用查询</a>
+					    </li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+					    <div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
+					    	<div class="tm-search-box effect2">
+								<form action="#" method="post" class="hotel-search-form">
+									<div class="tm-form-inner">
+										<div class="form-group">
+														<div class="form-group">
+							                <div class='input-group date' id='datetimepicker1'>
+							                    <input type='text' class="form-control" placeholder="请选择日期" readonly="readonly"/>
+							                    <span class="input-group-addon">
+							                        <span class="fa fa-calendar">日期控件</span>
+							                    </span>
+							                </div>
+							            </div>
+							          	</div>
+							          	<div class="form-group">
+							                <div class='input-group date' id='datetimepicker1'>
+							                    <input type='text' class="form-control" placeholder="出发地" />
+							                    <span class="input-group-addon">
+							                        <span class="fa fa-calendar">出发地</span>
+							                    </span>
+							                </div>
+							            </div>
+							          	<div class="form-group">
+							                <div class='input-group date' id='datetimepicker2'>
+							                    <input type='text' class="form-control" placeholder="到达地" />
+							                    <span class="input-group-addon">
+							                        <span class="fa fa-calendar">到达地</span>
+							                    </span>
+							                </div>
+							            </div>
+							            <div class="form-group margin-bottom-0">
+							                <select class="form-control">
+							            	 	<option value="">-- 选择类型 -- </option>
+							            	 	<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5p">5+</option>
+											</select> 
+							            </div>
+									</div>							
+						            <div class="form-group tm-yellow-gradient-bg text-center">
+						            	<button type="submit" name="submit" class="tm-yellow-btn" style="font-size: 20px;">查    询</button>
+						            </div>  
+								</form>
+							</div>
+					    </div>
+					    <div role="tabpanel" class="tab-pane fade tm-white-bg" id="car">
+							<div class="tm-search-box effect2">
+								<form action="#" method="post" class="hotel-search-form">
+									<div class="tm-form-inner">
+										<div class="form-group">
+							            	 <select class="form-control">
+							            	 	<option value="">到达站</option>
+							            	 	<option value="shangrila">出发站</option>
+											</select> 
+							          	</div>
+							          	<div class="form-group">
+							                <div class='input-group date-time' id='datetimepicker3'>
+							                    <input type='text' class="form-control" placeholder="请输入车站" />
+							                    <span class="input-group-addon">
+							                        <span class="fa fa-calendar">车站</span>
+							                    </span>
+							                </div>
+							            </div>
+							          	<div class="form-group">
+							                <div class='input-group date-time' id='datetimepicker4'>
+							                    <input type='text' class="form-control" placeholder="请输入车次" />
+							                    <span class="input-group-addon">
+							                        <span class="fa fa-calendar">车次</span>
+							                    </span>
+							                </div>
+							           </div>					           
+									</div>							
+						            <div class="form-group tm-yellow-gradient-bg text-center">
+						            	<button type="submit" name="submit" class="tm-yellow-btn" style="font-size: 20px;">查    询</button>
+						            </div>  
+								</form>
+							</div>
+					    </div>				    
+					</div>
+				</div>								
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-6">
+				<div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-center">
+					<img src="img/index-01.jpg" alt="image" class="img-responsive">
+					<a href="#">
+						<div class="tm-green-gradient-bg tm-city-price-container">
+							<span>New York</span>
+							<span>$6,600</span>
+						</div>	
+					</a>			
+				</div>				
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-6">
+				<div class="tm-home-box-1 tm-home-box-1-2 tm-home-box-1-right">
+					<img src="img/index-02.jpg" alt="image" class="img-responsive">
+					<a href="#">
+						<div class="tm-red-gradient-bg tm-city-price-container">
+							<span>Paris</span>
+							<span>$4,200</span>
+						</div>	
+					</a>					
+				</div>				
+			</div>
+		</div>
+
+ 	</div>
+ 	<div style="height: 50px;"></div>
+ 			<section class="tm-white-bg section-padding-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="tm-section-header section-margin-top">
+					<div class="col-lg-4 col-md-3 col-sm-3"><hr></div>
+					<div class="col-lg-4 col-md-6 col-sm-6"><h2 class="tm-section-title">行程推荐</h2></div>
+					<div class="col-lg-4 col-md-3 col-sm-3"><hr></div>	
+				</div>				
+			</div>
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
+					<div class="tm-tours-box-2">						
+						<img src="/static/images/tuijian1.jpg" alt="image" class="img-responsive">
+						<div class="tm-tours-box-2-info">
+							<h3 class="margin-bottom-15">人文始祖天水两日游</h3>
+							<img src="/static/images/rating.png" alt="image" class="margin-bottom-5">
+							<p>￥980</p>	
+						</div>						
+						<a href="#" class="tm-tours-box-2-link">马上购买</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
+					<div class="tm-tours-box-2">						
+						<img src="/static/images/tuijian2.jpg" alt="image" class="img-responsive">
+						<div class="tm-tours-box-2-info">
+							<h3 class="margin-bottom-15">“环西部火车游” 敦煌一地三日游</h3>
+							<img src="/static/images/rating.png" alt="image" class="margin-bottom-5">
+							<p>￥1380</p>	
+						</div>						
+						<a href="#" class="tm-tours-box-2-link">马上购买</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
+					<div class="tm-tours-box-2">						
+						<img src="/static/images/tuijian3.jpg" alt="image" class="img-responsive">
+						<div class="tm-tours-box-2-info">
+							<h3 class="margin-bottom-15">“环西部火车游”美丽甘南三日游</h3>
+							<img src="/static/images/rating.png" alt="image" class="margin-bottom-5">
+							<p>￥880</p>	
+						</div>						
+						<a href="#" class="tm-tours-box-2-link">马上购买</a>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xxs-12">
+					<div class="tm-tours-box-2">						
+						<img src="/static/images/tuijian4.jpg" alt="image" class="img-responsive">
+						<div class="tm-tours-box-2-info">
+							<h3 class="margin-bottom-15">“环西部火车游”嘉敦5日游</h3>
+							<img src="/static/images/rating.png" alt="image" class="margin-bottom-5">
+							<p>￥2260</p>	
+						</div>						
+						<a href="#" class="tm-tours-box-2-link">马上购买</a>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<p class="home-description">Lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.
+					Morbi accumsaipsu m velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat.
+					</p>					
+				</div>
+			</div>	
+		</div>
+	</section>
+	<footer class="tm-black-bg">
+		<div class="container">
+			<div class="row">
+				<p class="tm-copyright-text">Copyright &copy; <a target="_blank">ChiAo1fei</a> 
+                
+                | 毕业设计 <a target="_blank">火车订票管理系统</a> - By <a target="_blank">Django & Html5</a></p>
+			</div>
+		</div>		
+	</footer>
+
+  	    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
