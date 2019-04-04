@@ -110,6 +110,7 @@ class TrainStationPrice(models.Model):
 
     # 二等座票数
     second_seat_nums = models.IntegerField(verbose_name='二等座票数', default=50)
+    #
     # 二等座价格
     second_seat_price = models.DecimalField(verbose_name='价格', max_digits=4, decimal_places=1, null=True)
 
