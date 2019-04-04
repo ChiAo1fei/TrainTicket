@@ -50,7 +50,7 @@ class GlobalSetting(CommAdminView):
     site_title = '火车订票管理后台'
     # 页脚
     site_footer = 'Copyright © 2019 赵一飞的毕业设计'
-    menu_style = 'accordion'
+    # menu_style = 'accordion'
 
 
 xadmin.site.register(CommAdminView, GlobalSetting)

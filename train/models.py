@@ -34,15 +34,15 @@ class TrainInfo(models.Model):
     train_date = models.DateField(verbose_name='运行日期', null=True)
     # 火车类型
     TRAIN_TYPE = (
-        ('C', '城际列车'),
-        ('D', '动车组'),
-        ('G', '高速列车'),
-        ('Z', '直达列车'),
-        ('T', '特快列车'),
-        ('K', '快速列车'),
-        ('L', '临时旅客列车'),
-        ('A', '局管内临时旅客列车'),
-        ('Y', '旅游列车')
+        ('C', '城际列车 C'),
+        ('D', '动车组 D'),
+        ('G', '高速列车 G'),
+        ('Z', '直达列车 Z'),
+        ('T', '特快列车 T'),
+        ('K', '快速列车 K'),
+        ('L', '临时旅客列车 L'),
+        ('A', '局管内临时旅客列车 A'),
+        ('Y', '旅游列车 Y')
     )
     train_type = models.CharField(choices=TRAIN_TYPE, verbose_name='火车类型', max_length=1, null=True)
     # 火车编号
@@ -58,9 +58,17 @@ class TrainInfo(models.Model):
     # 运行时长
     running_time = models.CharField(verbose_name='运行时长', max_length=10, null=True)
     # 是否次日
-    is_morrow = models.BooleanField(verbose_name='是否次日', default=0)
+    IS_MORROW = (
+        ('1', '是'),
+        ('0', '否')
+    )
+    is_morrow = models.CharField(choices=IS_MORROW, verbose_name='是否次日', max_length=1, default=0)
     # 是否删除
-    is_delete = models.BooleanField(verbose_name='是否删除', default=0)
+    IS_DELETE = (
+        ('1', '是'),
+        ('0', '否')
+    )
+    is_delete = models.CharField(choices=IS_DELETE, verbose_name='是否删除', max_length=1, default=0)
 
     class Meta:
         db_table = 'train_info'

@@ -29,18 +29,13 @@ class Order(models.Model):
     seat_price = models.CharField(verbose_name='票价', max_length=10, null=True)
     # 订票日期
     order_time = models.DateTimeField(verbose_name='订票日期', auto_now_add=True)
-    # 是否退票
-    IS_DELETE = (
-        ('0', '否'),
-        ('1', '是')
+    # 状态
+    STATUS = (
+        ('1', '已支付'),
+        ('2', '已改签'),
+        ('3', '已退票'),
     )
-    is_delete = models.IntegerField(choices=IS_DELETE, verbose_name='是否退票', default=0)
-    # 是否改签
-    IS_ALTER = (
-        ('0', '否'),
-        ('1', '是')
-    )
-    is_alter = models.IntegerField(choices=IS_ALTER, verbose_name='是否改签', default=0)
+    status = models.IntegerField(choices=STATUS, verbose_name='状态', null=True)
 
     class Meta:
         db_table = 'order'
