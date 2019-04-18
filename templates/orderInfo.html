@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Theme Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../../dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css" />
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    	.table th, .table td {
+			text-align: center;
+			vertical-align: middle!important;
+			}
+    </style>
+  </head>
+
+  <body>
+  	<!--顶部导航栏-->
+  	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'train:index' %}">火车订票系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'train:index' %}">首页</a></li>
+            <li  class="active"><a href="{% url 'train:selectTrainTicket' %}">购票</a></li>
+            <li><a href="#contact">关于</a></li>
+            {% if not session %}
+                <li><a href="{% url 'user:login' %}">登录</a></li>
+                <li><a href="{% url 'user:register' %}">注册</a></li>
+            {% endif %}
+            {% if session %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'order:user_order' %}">我的订单</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'user:userinfo' %}">我的信息</a></li>
+                        <li><a href="{% url 'user:logout' %}">退出</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div id="blank" style="height: 80px;"></div>
+  		<div class="container theme-showcase" role="main">
+        <div class="col-sm-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">列车信息</h3>
+            </div>
+            <div class="panel-body" style="border-bottom: 1px dashed gray;">
+              <strong>{{ train_info.train_date }}</strong><strong> {{ train_info.train_id }} </strong>次 <strong>{{ train_info.go_station }}</strong> <strong>{{ train_info.go_time }}</strong>（发） <strong>{{ train_info.arrive_station }}</strong>
+                <strong>{{ train_info.arrive_time }}</strong>（到）
+            </div>
+            <div class="panel-body">
+                {% ifnotequal train_info.business_seat_nums 0 %}
+                    <strong>商务座：</strong>
+                    <span>{{ train_info.business_seat_nums }} ￥{{ train_info.business_seat_price }}</span>
+                {% endifnotequal %}
+
+                {% ifnotequal train_info.first_seat_nums 0 %}
+                    <strong>一等座：</strong>
+                    <span>{{ train_info.first_seat_nums }} ￥{{ train_info.first_seat_price }}</span>
+                {% endifnotequal %}
+
+                {% ifnotequal train_info.second_seat_nums 0 %}
+                    <strong>二等座：</strong>
+                    <span>{{ train_info.second_seat_nums }} ￥{{ train_info.second_seat_price }}</span>
+                {% endifnotequal %}
+
+                {% ifnotequal train_info.no_seat_nums 0 %}
+                    <strong>无座：</strong>
+                    <span>{{ train_info.no_seat_nums }} ￥{{ train_info.no_seat_price }}</span>
+                {% endifnotequal %}
+
+                {% ifnotequal train_info.hard_seat_nums 0 %}
+                    <strong>硬座：</strong>
+                    <span>{{ train_info.hard_seat_nums }} ￥{{ train_info.hard_seat_price }}</span>
+                {% endifnotequal %}
+
+                {% ifnotequal train_info.hard_berth_nums 0 %}
+                    <strong>硬卧：</strong>
+                    <span>{{ train_info.hard_berth_nums }} ￥{{ train_info.hard_berth_price }}</span>
+                {% endifnotequal %}
+
+            </div>
+          </div>
+        </div>
+
+  	  	<form method="post">
+            <div class="col-sm-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">乘客信息</h3>
+            </div>
+            <div class="panel-body" style="border-bottom: 1px dashed gray;">
+              <span> <strong>姓名：</strong>{{ user.name }} </span>
+                <span> <strong>身份证号码：</strong>{{ user.id_card }} </span>
+                <span> <strong>电话：</strong>{{ user.phone }} </span>
+            </div>
+            <div class="panel-body">
+
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>订单号</th>
+                <th>席别</th>
+                <th>姓名</th>
+                <th>证件类型</th>
+                <th>证件号</th>
+                <th>手机号</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>
+				    <select class="form-control" id="selectBox" name="selectBox">
+                        {% ifnotequal train_info.business_seat_nums 0 %}
+                            <option value=" 商务座￥{{ train_info.business_seat_price }}">
+                                <strong>商务座：</strong>
+                                <span>{{ train_info.business_seat_nums }} ￥{{ train_info.business_seat_price }}</span>
+                            </option>
+                        {% endifnotequal %}
+
+                        {% ifnotequal train_info.first_seat_nums 0 %}
+                            <option value=" 一等座￥{{ train_info.first_seat_price }}">
+                                <strong>一等座：</strong>
+                                <span>{{ train_info.first_seat_nums }} ￥{{ train_info.first_seat_price }}</span>
+                            </option>
+                        {% endifnotequal %}
+
+                        {% ifnotequal train_info.second_seat_nums 0 %}
+                            <option value=" 二等座￥{{ train_info.second_seat_price }}">
+                                <strong>二等座：</strong>
+                                <span>{{ train_info.second_seat_nums }} ￥{{ train_info.second_seat_price }}</span>
+                            </option>
+                        {% endifnotequal %}
+
+                        {% ifnotequal train_info.no_seat_nums 0 %}
+                            <option value=" 无座￥{{ train_info.no_seat_price }}">
+                                <strong >无座：</strong>
+                                <span>{{ train_info.no_seat_nums }} ￥{{ train_info.no_seat_price }}</span>
+                            </option>
+                        {% endifnotequal %}
+
+                        {% ifnotequal train_info.hard_seat_nums 0 %}
+                            <option value=" 硬座￥{{ train_info.hard_seat_price }}">
+                                <strong>硬座：</strong>
+                                <span>{{ train_info.hard_seat_nums }} ￥{{ train_info.hard_seat_price }}</span>
+                            </option>
+                        {% endifnotequal %}
+
+                        {% ifnotequal train_info.hard_berth_nums 0 %}
+                            <option value=" 硬卧￥{{ train_info.hard_berth_price }}">
+                                <strong>硬卧：</strong>
+                                <span>{{ train_info.hard_berth_nums }} ￥{{ train_info.hard_berth_price }}</span>
+                            </option>
+                        {% endifnotequal %}
+				    </select>
+                </td>
+                <td>{{ user.name }}</td>
+                <td>身份证</td>
+                <td>{{ user.id_card }}</td>
+                <td>{{ user.phone }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+            </div>
+          </div>
+        </div>
+        <div class="btn-group" style="left: 91%;">
+            <button type="submit" class="btn btn-warning">提交订单</button>
+        </div>
+        </form>
+
+  	</div>
+
+ 	<footer class="tm-black-bg navbar-fixed-bottom">
+		<div class="container">
+			<div class="row">
+				<p class="tm-copyright-text">Copyright &copy; <a target="_blank">ChiAo1fei</a>
+
+                | 毕业设计 <a target="_blank">火车订票管理系统</a> - By <a target="_blank">Django & Html5</a></p>
+			</div>
+		</div>
+	</footer>
+
+  	    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

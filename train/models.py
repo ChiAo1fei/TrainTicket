@@ -82,9 +82,12 @@ class TrainInfo(models.Model):
 class TrainStationPrice(models.Model):
     """
     定义火车的票价，每站到每站的票价
+    TrainStationPrice.objects.filter(go_station__station_name='')
     """
     # 火车车次
     train_id = models.ForeignKey(TrainInfo, verbose_name='车次', related_name='train_price', on_delete=models.CASCADE, null=True)
+    # 运行日期
+    train_date = models.DateField(verbose_name='运行日期', null=True)
     # 出发站
     go_station = models.ForeignKey(Station, verbose_name='出发站', related_name='go_train_price', on_delete=models.CASCADE, null=True)
     # 出发时间
@@ -122,7 +125,7 @@ class TrainStationPrice(models.Model):
     # 商务座票数
     business_seat_nums = models.IntegerField(verbose_name='商务座票数', default=50)
     # 商务座价格
-    business_seat_price = models.DecimalField(verbose_name='价格',max_digits=4, decimal_places=1, null=True)
+    business_seat_price = models.DecimalField(verbose_name='价格', max_digits=4, decimal_places=1, null=True)
 
     class Meta:
         db_table = 'train_price'

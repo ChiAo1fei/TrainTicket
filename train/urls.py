@@ -2,5 +2,9 @@
 
 
 from django.urls import path, include
+from train.views import *
 
-urlpatterns = []
+urlpatterns = [
+    path('index/', index, name='index'),
+    path('selectTrainTicket/', selectTrainTicket, name='selectTrainTicket'),
+]

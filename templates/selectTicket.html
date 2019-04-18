@@ -50,20 +50,30 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">火车订票系统</a>
+          <a class="navbar-brand" href="{% url 'train:index' %}">火车订票系统</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">首页</a></li>
-            <li class="active"><a href="#about">购票</a></li>
+            <li><a href="{% url 'train:index' %}">首页</a></li>
+            <li class="active"><a href="{% url 'train:selectTrainTicket' %}">购票</a></li>
             <li><a href="#contact">关于</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">我的订单</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">我的信息</a></li>
-              </ul>
+            {% if not session %}
+                <li><a href="{% url 'user:login' %}">登录</a></li>
+                <li><a href="{% url 'user:register' %}">注册</a></li>
+            {% endif %}
+            {% if session %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'order:user_order' %}">我的订单</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'user:userinfo' %}">我的信息</a></li>
+                        <li><a href="{% url 'user:logout' %}">退出</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+
+          </ul>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -75,12 +85,12 @@
 			  <form class="form-inline" action="" method="post">
 	  			<div class="form-group col-md-3">
 	  				<label>出发站：</label>
-	  				<input class="form-control" type="text" placeholder="请输入出发站" />
+	  				<input class="form-control" type="text" name="go_station" placeholder="请输入出发站" />
 	  			</div>
 	  			
 	  			<div class="form-group col-md-3">
 	  				<label>到达站：</label>
-	  				<input class="form-control" type="text" placeholder="请输入到达站" />
+	  				<input class="form-control" type="text" name="arrive_station" placeholder="请输入到达站" />
 	  			</div>
 	  			
 	  			<div class="form-group col-md-3">
@@ -100,7 +110,7 @@
 	            </div>
 	        	
 	  			<div class="form-group col-md-1">
-	            	<input class="btn btn-default" type="button" value="查询">
+	            	<input class="btn btn-default" type="submit" value="查询">
 	        	</div>
   			</form>
 		</div>
@@ -129,121 +139,32 @@
 		      </tr>
 		   </thead>
 		   <tbody>
-		      <tr>
-		         <td>G6751</td>
-		         <td>石家庄<br clear="none">邯郸东</td>
-		         <td>13:06<br clear="none">15:25</td>
+           {% for train_info in train_infos %}
+               <tr>
+		         <td>{{ train_info.train_id }}</td>
+		         <td>{{ train_info.go_station }}<br clear="none"> {{ train_info.arrive_station }} </td>
+		         <td>{{ train_info.go_time }}<br clear="none">{{ train_info.arrive_time }}</td>
 		         <td>2时11分<br clear="none">当日到达</td>
-		         <td>50</td>
-		         <td>50</td>
-		         <td>100</td>
-		         <td>100</td>
-		         <td>110</td>
-		         <td>110</td>
-		         <td>120</td>
-		         <td>120</td>
-		         <td>130</td>
-		         <td>130</td>
-		         <td>140</td>
-		         <td>150</td>
-	            <td><input class="btn btn-default" type="button" value="预定"></td>
+		         <td>{{ train_info.business_seat_nums }}</td>
+		         <td>￥{{ train_info.business_seat_price }}</td>
+		         <td>{{ train_info.first_seat_nums }}</td>
+		         <td>￥{{ train_info.first_seat_price }}</td>
+		         <td>{{ train_info.second_seat_nums }}</td>
+		         <td>￥{{ train_info.second_seat_price }}</td>
+		         <td>{{ train_info.hard_berth_nums }}</td>
+		         <td>￥{{ train_info.hard_berth_price }}</td>
+		         <td>{{ train_info.hard_seat_nums }}</td>
+		         <td>￥{{ train_info.hard_seat_price }}</td>
+		         <td>{{ train_info.no_seat_nums }}</td>
+		         <td>￥{{ train_info.no_seat_price }}</td>
+               <td><a class="btn btn-ajax" href="{% url 'order:orderinfo' train_info.id %}" >预定</a></td>
 		      </tr>
-		      <tr>
-		         <td>G6751</td>
-		         <td>石家庄<br clear="none">邯郸东</td>
-		         <td>13:06<br clear="none">15:25</td>
-		         <td>2时11分<br clear="none">当日到达</td>
-		         <td>50</td>
-		         <td>50</td>
-		         <td>100</td>
-		         <td>100</td>
-		         <td>110</td>
-		         <td>110</td>
-		         <td>120</td>
-		         <td>120</td>
-		         <td>130</td>
-		         <td>130</td>
-		         <td>140</td>
-		         <td>150</td>
-	           <td><button class="btn btn-primary btn-ajax" data-toggle="modal" data-target="#addUserModal">预定</button></td>
-						           
-					    <form method="post" action="" class="form-horizontal" role="form" id="form_data" onsubmit="return check_form()" style="margin: 20px;">
-					    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					        <div class="modal-dialog">
-					            <div class="modal-content">
-					                <div class="modal-header">
-					                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					                        ×
-					                    </button>
-					                    <h4 class="modal-title" id="myModalLabel">
-					                        用户信息
-					                    </h4>
-					                </div>
-					                <div class="modal-body">
-					                    <form class="exform quick-form rended" enctype="multipart/form-data">
-					                        <div class="form-group row">
-					                            <label for="user_id" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户ID</label>
-					                            <div class="col-sm-6">
-					                                <input type="text" class="form-control" id="user_id" name="user_id" value="{user_id}"
-					                                       placeholder="请输入用户ID">
-					                            </div>
-					                        </div>
-					                       
-					                        <div class="form-group row">
-					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户名</label>
-					                            <div class="col-sm-6">
-					                                <input type="text" class="form-control" name="user_name" value="" id="user_name"
-					                                       placeholder="用户名">
-					                            </div>
-					                        </div>
-					                        <div class="form-group row">
-					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">地址</label>
-					                            <div class="col-sm-6">
-					                                <input type="text" class="form-control" name="address" value="" id="address"
-					                                       placeholder="地址">
-					                            </div>
-					                        </div>
-					                        					                        <div class="form-group row">
-					                            <label for="user_id" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户ID</label>
-					                            <div class="col-sm-6">
-					                                <input type="text" class="form-control" id="user_id" name="user_id" value="{user_id}"
-					                                       placeholder="请输入用户ID">
-					                            </div>
-					                        </div>
-					                       
-					                        <div class="form-group row">
-					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户名</label>
-					                            <div class="col-sm-6">
-					                                <input type="text" class="form-control" name="user_name" value="" id="user_name"
-					                                       placeholder="用户名">
-					                            </div>
-					                        </div>
-					                        <div class="form-group row">
-					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">地址</label>
-					                            <div class="col-sm-6">
-					                                <input type="text" class="form-control" name="address" value="" id="address"
-					                                       placeholder="地址">
-					                            </div>
-					                        </div>
-					                    </form>
-					                </div>
-					                <div class="modal-footer">
-					                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-					                    </button>
-					                    <button type="submit" class="btn btn-primary">
-					                        提交
-					                    </button><span id="tip"> </span>
-					                </div>
-					            </div><!-- /.modal-content -->
-					        </div><!-- /.modal -->
-					    </div>
-					    </form>
-
-		      </tr>
+           {% endfor %}
 		   </tbody></table>
 		   <div style="height: 100%; background-color: red;">
 		   	备注
 		   </div>
+
    </div> 
     
  	<footer class="tm-black-bg navbar-fixed-bottom">
@@ -256,6 +177,13 @@
 		</div>		
 	</footer>
 
+    <script type="text/javascript">
+
+        function orders(value) {
+            alert(value);
+            $('input#arrive_time').val(value)
+        }
+    </script>
   	    <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -267,5 +195,3 @@
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
-
-<div class="modal-body">

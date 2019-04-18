@@ -50,27 +50,35 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">火车订票系统</a>
+          <a class="navbar-brand" href="{% url 'train:index' %}">火车订票系统</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">首页</a></li>
-            <li><a href="#about">购票</a></li>
+                   <ul class="nav navbar-nav">
+            <li><a href="{% url 'train:index' %}">首页</a></li>
+            <li><a href="{% url 'train:selectTrainTicket' %}">购票</a></li>
             <li><a href="#contact">关于</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">我的订单</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">我的信息</a></li>
-              </ul>
-            </li>
+            {% if not session %}
+                <li><a href="{% url 'user:login' %}">登录</a></li>
+                <li><a href="{% url 'user:register' %}">注册</a></li>
+            {% endif %}
+            {% if session %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'order:user_order' %}">我的订单</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'user:userinfo' %}">我的信息</a></li>
+                        <li><a href="{% url 'user:logout' %}">退出</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
         <div id="blank" style="height: 80px;"></div>
-  <div class="container theme-showcase" role="main">
+  <div class="container theme-showcase" role="main" style="width: 80%">
 		<table class="table table-striped">
 	  <caption>订单信息</caption>
 	  <thead>
@@ -87,25 +95,39 @@
 	      <th  class="text-center">座位级别</th>
 	      <th  class="text-center">票价</th>
 	      <th  class="text-center">状态</th>
-	      <th  class="text-center">操作</th>
+	      <th  class="text-center">改签</th>
+	      <th  class="text-center">退票</th>
 	    </tr>
 	  </thead>
 	  <tbody>
-	    <tr class="text-center">
-	      <td>账号</td>
-	      <td>Bangalore</td>
-	      <td>账号</td>
-	      <td>130481199703162111</td>
-	      <td>账号</td>
-	      <td>Bangalore</td>      
-	      <td>账号</td>
-	      <td>Bangalore</td>
-	      <td>账号</td>
-	      <td>Bangalore</td>
-	      <td>账号</td>
-	      <td>账号</td>
-	      <td><input class="btn btn-default" type="button" value="修改"> </td>
+      {% for order in orders %}
+        <tr class="text-center">
+        <form method="post">
+          <td>{{ order.order_id }}</td>
+	      <td>{{ order.order_time }}</td>
+	      <td>{{ order.account_num }}</td>
+	      <td>{{ order.name }}</td>
+	      <td>{{ order.id_card }}</td>
+	      <td>{{ order.go_station }}</td>
+	      <td>{{ order.go_time }}</td>
+	      <td>{{ order.arrive_station }}</td>
+	      <td>{{ order.arrive_time }}</td>
+	      <td>{{ order.seat_level }}</td>
+	      <td>{{ order.seat_price }}</td>
+	      <td>{{ order.status }}</td>
+	      <td>
+              <button class="btn btn-default" type="submit" value="{{ order.order_id }}" name="ticketChange">改签</button>
+{#              <input class="btn btn-default" type="submit" value="改签" name="status" data-value="{{ order.account_num }}">#}
+          </td>
+          <td>
+{#              <input class="btn btn-default" type="submit" value="退票" name="status" data-value="{{ order.account_num }}">#}
+              <button class="btn btn-default" type="submit" value="{{ order.order_id }}" name="ticketRefund">退票</button>
+          </td>
+        </form>
 	    </tr>
+      {% endfor %}
+
+
 	  </tbody>
 	</table>
   </div>

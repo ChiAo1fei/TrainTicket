@@ -49,21 +49,29 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">火车订票系统</a>
+          <a class="navbar-brand" href="{% url 'train:index' %}">火车订票系统</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">首页</a></li>
-            <li><a href="#about">购票</a></li>
+            <li class="active"><a href="{% url 'train:index' %}">首页</a></li>
+            <li><a href="{% url 'train:selectTrainTicket' %}">购票</a></li>
             <li><a href="#contact">关于</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">我的订单</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">我的信息</a></li>
-              </ul>
-            </li>
+            {% if not session %}
+                <li><a href="{% url 'user:login' %}">登录</a></li>
+                <li><a href="{% url 'user:register' %}">注册</a></li>
+            {% endif %}
+            {% if session %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'order:user_order' %}">我的订单</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'user:userinfo' %}">我的信息</a></li>
+                        <li><a href="{% url 'user:logout' %}">退出</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -114,23 +122,23 @@
 
 					<!-- Tab panes -->
 					<div class="tab-content">
-					    <div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="hotel">
+					    <div role="tabpanel" class="tab-pane fade in active tm-white-bg" id="station">
 					    	<div class="tm-search-box effect2">
 								<form action="#" method="post" class="hotel-search-form">
 									<div class="tm-form-inner">
 										<div class="form-group">
 														<div class="form-group">
 							                <div class='input-group date' id='datetimepicker1'>
-							                    <input type='text' class="form-control" placeholder="请选择日期" readonly="readonly"/>
+							                    <input id="leave_date" type="date" name="leave_date" class="form-control" placeholder="Date">
 							                    <span class="input-group-addon">
-							                        <span class="fa fa-calendar">日期控件</span>
+							                        <span class="fa fa-calendar">日期</span>
 							                    </span>
 							                </div>
 							            </div>
 							          	</div>
 							          	<div class="form-group">
 							                <div class='input-group date' id='datetimepicker1'>
-							                    <input type='text' class="form-control" placeholder="出发地" />
+							                    <input type='text' class="form-control" placeholder="出发地" name="go_station"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar">出发地</span>
 							                    </span>
@@ -138,7 +146,7 @@
 							            </div>
 							          	<div class="form-group">
 							                <div class='input-group date' id='datetimepicker2'>
-							                    <input type='text' class="form-control" placeholder="到达地" />
+							                    <input type='text' class="form-control" placeholder="到达地" name="arrive_station"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar">到达地</span>
 							                    </span>
@@ -161,14 +169,14 @@
 								</form>
 							</div>
 					    </div>
-					    <div role="tabpanel" class="tab-pane fade tm-white-bg" id="car">
+					    <div role="tabpanel" class="tab-pane fade tm-white-bg" id="train">
 							<div class="tm-search-box effect2">
 								<form action="#" method="post" class="hotel-search-form">
 									<div class="tm-form-inner">
 										<div class="form-group">
-							            	 <select class="form-control">
-							            	 	<option value="">到达站</option>
-							            	 	<option value="shangrila">出发站</option>
+							            	 <select class="form-control" name="station">
+							            	 	<option value="0">到达站</option>
+							            	 	<option value="1">出发站</option>
 											</select> 
 							          	</div>
 							          	<div class="form-group">
@@ -181,7 +189,7 @@
 							            </div>
 							          	<div class="form-group">
 							                <div class='input-group date-time' id='datetimepicker4'>
-							                    <input type='text' class="form-control" placeholder="请输入车次" />
+							                    <input type='text' class="form-control" placeholder="请输入车次" name="train_num"/>
 							                    <span class="input-group-addon">
 							                        <span class="fa fa-calendar">车次</span>
 							                    </span>

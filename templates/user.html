@@ -44,67 +44,127 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">火车订票系统</a>
+          <a class="navbar-brand" href="{% url 'train:index' %}">火车订票系统</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">首页</a></li>
-            <li><a href="#about">购票</a></li>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="{% url 'train:index' %}">首页</a></li>
+            <li><a href="{% url 'train:selectTrainTicket' %}">购票</a></li>
             <li><a href="#contact">关于</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">我的订单</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">我的信息</a></li>
-              </ul>
-            </li>
+            {% if not session %}
+                <li><a href="{% url 'user:login' %}">登录</a></li>
+                <li><a href="{% url 'user:register' %}">注册</a></li>
+            {% endif %}
+            {% if session %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'order:user_order' %}">我的订单</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'user:userinfo' %}">我的信息</a></li>
+                        <li><a href="{% url 'user:logout' %}">退出</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
         <div id="blank" style="height: 80px;"></div>
   <div class="container theme-showcase" style="width: 60%;" role="main">
+
+    {% if errors.password %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.password2 }}
+        </div>
+    {% endif %}
+
+    {% if errors.name %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.name }}
+        </div>
+    {% endif %}
+
+    {% if errors.id_card %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.id_card }}
+        </div>
+    {% endif %}
+
+    {% if errors.age %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.age }}
+        </div>
+    {% endif %}
+    {% if errors.phone %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.phone }}
+        </div>
+    {% endif %}
+    {% if errors.address %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.address }}
+        </div>
+    {% endif %}
+
+     {% if success %}
+        <div class="alert alert-success" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>成功</strong>{{ success }}
+        </div>
+    {% endif %}
 		<table class="table table-striped">
 	  <caption>个人信息</caption>
 	  <thead>
 	    <tr>
-	      <th  class="text-center">名称</th>
-	      <th  class="text-center">城市</th>
+	      <th  class="text-center">属性</th>
+	      <th  class="text-center">信息</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	    <tr class="text-center">
 	      <td>账号</td>
-	      <td>Bangalore</td>
+	      <td>{{ userInfo.account_number }}</td>
 	    </tr>
 	    <tr class="text-center">
 	      <td>密码</td>
-	      <td>Mumbai</td>
+	      <td>{{ userInfo.password }}</td>
 	    </tr>
 	    <tr class="text-center">
 	      <td>姓名</td>
-	      <td>Pune</td>
+	      <td>{{ userInfo.name }}</td>
 	    </tr>
 	    <tr class="text-center">
 	      <td>性别</td>
-	      <td>Pune</td>
+	      {% if userInfo.sex %}
+	            <td>女</td>
+	      {% endif %}
+            {% if not userInfo.sex %}
+	            <td>男</td>
+	      {% endif %}
 	    </tr>
 	    <tr class="text-center">
 	      <td>证件号</td>
-	      <td>Pune</td>
+	      <td>{{ userInfo.id_card }}</td>
 	    </tr>
 	    <tr class="text-center">
 	      <td>年龄</td>
-	      <td>Pune</td>
+	      <td>{{ userInfo.age }}</td>
 	    </tr>
 	    <tr class="text-center">
 	      <td>电话</td>
-	      <td>Pune</td>
+	      <td>{{ userInfo.phone }}</td>
 	    </tr>
 	    <tr class="text-center">
 	      <td>地址</td>
-	      <td>Pune</td>
+	      <td>{{ userInfo.address }}</td>
 	    </tr>
 	  </tbody>
 	</table>
@@ -123,48 +183,57 @@
 					                </div>
 					                <div class="modal-body">
 					                    <form class="exform quick-form rended" enctype="multipart/form-data">
-					                        <div class="form-group row">
-					                            <label for="user_id" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户ID</label>
+                                            <div class="form-group row">
+					                            <label for="user_id" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">姓名</label>
 					                            <div class="col-sm-6">
-					                                <input type="text" class="form-control" id="user_id" name="user_id" value="{user_id}"
-					                                       placeholder="请输入用户ID">
+					                                <input type="text" class="form-control" id="user_id" name="name"
+					                                       placeholder="{{ userInfo.name }}">
+					                            </div>
+					                        </div>
+					                        <div class="form-group row">
+					                            <label for="user_id" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">密码</label>
+					                            <div class="col-sm-6">
+					                                <input type="password" class="form-control" id="user_id" name="password"
+					                                       placeholder="请输入新密码">
 					                            </div>
 					                        </div>
 					                       
 					                        <div class="form-group row">
-					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户名</label>
+					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">性别</label>
 					                            <div class="col-sm-6">
-					                                <input type="text" class="form-control" name="user_name" value="" id="user_name"
-					                                       placeholder="用户名">
+                                                    <select name="sex" class="form-control" id='id_password'>
+                                                        <option value="0">男</option>
+                                                        <option value="1">女</option>
+                                                    </select>
+					                            </div>
+					                        </div>
+					                        <div class="form-group row">
+					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">证件号</label>
+					                            <div class="col-sm-6">
+					                                <input type="text" class="form-control" name="id_card"  id="address"
+					                                       placeholder="{{ userInfo.id_card }}">
+					                            </div>
+					                        </div>
+					                        <div class="form-group row">
+					                            <label for="user_id" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">年龄</label>
+					                            <div class="col-sm-6">
+					                                <input type="text" class="form-control" id="user_id" name="age"
+					                                       placeholder="{{ userInfo.age }}">
+					                            </div>
+					                        </div>
+					                       
+					                        <div class="form-group row">
+					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">电话</label>
+					                            <div class="col-sm-6">
+					                                <input type="text" class="form-control" name="phone" id="user_name"
+					                                       placeholder="{{ userInfo.phone }}">
 					                            </div>
 					                        </div>
 					                        <div class="form-group row">
 					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">地址</label>
 					                            <div class="col-sm-6">
 					                                <input type="text" class="form-control" name="address" value="" id="address"
-					                                       placeholder="地址">
-					                            </div>
-					                        </div>
-					                        					                        <div class="form-group row">
-					                            <label for="user_id" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户ID</label>
-					                            <div class="col-sm-6">
-					                                <input type="text" class="form-control" id="user_id" name="user_id" value="{user_id}"
-					                                       placeholder="请输入用户ID">
-					                            </div>
-					                        </div>
-					                       
-					                        <div class="form-group row">
-					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">用户名</label>
-					                            <div class="col-sm-6">
-					                                <input type="text" class="form-control" name="user_name" value="" id="user_name"
-					                                       placeholder="用户名">
-					                            </div>
-					                        </div>
-					                        <div class="form-group row">
-					                            <label for="lastname" class="col-sm-4 control-label" style="text-align: right; line-height: 34px;">地址</label>
-					                            <div class="col-sm-6">
-					                                <input type="text" class="form-control" name="address" value="" id="address"
-					                                       placeholder="地址">
+					                                       placeholder="{{ userInfo.address }}">
 					                            </div>
 					                        </div>
 					                    </form>

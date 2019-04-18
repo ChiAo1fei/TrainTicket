@@ -58,6 +58,67 @@
 	</style>
   </head>
   <div class="container">
+    {% if errors.account_number %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.account_number }}
+        </div>
+    {% endif %}
+
+    {% if errors.password %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.password }}
+        </div>
+    {% endif %}
+
+    {% if errors.password2 %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.password2 }}
+        </div>
+    {% endif %}
+
+    {% if errors.name %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.name }}
+        </div>
+    {% endif %}
+
+    {% if errors.id_card %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.id_card }}
+        </div>
+    {% endif %}
+
+    {% if errors.age %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.age }}
+        </div>
+    {% endif %}
+    {% if errors.phone %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.phone }}
+        </div>
+    {% endif %}
+    {% if errors.address %}
+        <div class="alert alert-warning" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>错误</strong>{{ errors.address }}
+        </div>
+    {% endif %}
+
+     {% if success %}
+        <div class="alert alert-success" role="alert">
+            <a class="close" data-dismiss="alert">×</a>
+            <strong>成功</strong>{{ success }}
+        </div>
+    {% endif %}
+
 	
 	  <form action="" method="post" id="login-form">
 	    <div class="panel panel-default panel-single" id="panel-login">
@@ -74,7 +135,8 @@
 	        <div class="controls clearfix">
 	        <div class="input-group input-group-lg">
 	          <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-	          <input class="form-control input-lg" id="id_username" maxlength="254" name="username" type="text" placeholder="账号">
+	          <input class="form-control input-lg" id="id_username" maxlength="254" name="account_number" type="text" placeholder="账号">
+
 	        </div>
 	        
 	        </div>
@@ -128,7 +190,7 @@
 	        <div class="controls clearfix">
 	        <div class="input-group input-group-lg">
 	          <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-	          <input class="form-control input-lg" id="id_password" name="ID_card" type="text" placeholder="证件号"> 
+	          <input class="form-control input-lg" id="id_password" name="id_card" type="text" placeholder="证件号">
 	        </div>
 	        
 	        </div>
@@ -138,7 +200,7 @@
 	        <div class="controls clearfix">
 	        <div class="input-group input-group-lg">
 	          <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-	          <input class="form-control input-lg" id="id_password" name="age" type="text" placeholder="年龄"> 
+	          <input class="form-control input-lg" id="id_password" name="age" type="text" placeholder="年龄">
 	        </div>
 	        
 	        </div>
@@ -148,7 +210,7 @@
 	        <div class="controls clearfix">
 	        <div class="input-group input-group-lg">
 	          <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-	          <input class="form-control input-lg" id="id_password" name="tel" type="text" placeholder="电话"> 
+	          <input class="form-control input-lg" id="id_password" name="phone" type="text" placeholder="电话">
 	        </div>
 	        
 	        </div>
@@ -158,7 +220,8 @@
 	        <div class="controls clearfix">
 	        <div class="input-group input-group-lg">
 	          <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-	          <input class="form-control input-lg" id="id_password" name="address" type="text" placeholder="地址"> 
+	          <input class="form-control input-lg" id="id_password" name="address" type="text" placeholder="地址">
+                <p> {{ errors.address }} </p>
 	        </div>
 	        
 	        </div>
@@ -168,7 +231,7 @@
 	
 	      <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
 	
-	      <div class="text-info" style="margin-top:15px;"><a href="/xadmin/xadmin/password_reset/"><i class="fa fa-question-sign"></i>返回登录</a></div>
+	      <div class="text-info" style="margin-top:15px;"><a href="{% url 'user:login' %}"><i class="fa fa-question-sign"></i>返回登录</a></div>
 	      </div>
 	    
 	    </div>

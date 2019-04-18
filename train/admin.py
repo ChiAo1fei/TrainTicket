@@ -12,7 +12,7 @@ class TrainInfoAdmin(object):
 
 
 class TrainStationPriceAdmin(object):
-    list_display = ('train_id', 'go_station', 'go_time', 'arrive_station', 'arrive_time', 'no_seat_nums',
+    list_display = ('train_id', 'train_date', 'go_station', 'go_time', 'arrive_station', 'arrive_time', 'no_seat_nums',
                     'no_seat_price', 'hard_seat_nums', 'hard_seat_price', 'hard_berth_nums', 'hard_berth_price',
                     'second_seat_nums', 'second_seat_price', 'first_seat_nums', 'first_seat_price', 'business_seat_nums'
                     , 'business_seat_price')
